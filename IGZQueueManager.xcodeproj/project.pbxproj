@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A88331121D9BE6DA005E9D3C /* NetworkHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88331111D9BE6DA005E9D3C /* NetworkHandlerProtocol.swift */; };
+		A88331141D9BE721005E9D3C /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88331131D9BE721005E9D3C /* Package.swift */; };
+		A88331161D9BE900005E9D3C /* AuthenticationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88331151D9BE900005E9D3C /* AuthenticationProtocol.swift */; };
 		A8EF3A741D9B58FF0096074E /* IGZQueueManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8EF3A6A1D9B58FF0096074E /* IGZQueueManager.framework */; };
 		A8EF3A791D9B58FF0096074E /* IGZQueueManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EF3A781D9B58FF0096074E /* IGZQueueManagerTests.swift */; };
 		A8EF3A7B1D9B58FF0096074E /* IGZQueueManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A8EF3A6D1D9B58FF0096074E /* IGZQueueManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A88331111D9BE6DA005E9D3C /* NetworkHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandlerProtocol.swift; sourceTree = "<group>"; };
+		A88331131D9BE721005E9D3C /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		A88331151D9BE900005E9D3C /* AuthenticationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocol.swift; sourceTree = "<group>"; };
 		A8EF3A6A1D9B58FF0096074E /* IGZQueueManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IGZQueueManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EF3A6D1D9B58FF0096074E /* IGZQueueManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGZQueueManager.h; sourceTree = "<group>"; };
 		A8EF3A6E1D9B58FF0096074E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A88331101D9BE6A7005E9D3C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A88331111D9BE6DA005E9D3C /* NetworkHandlerProtocol.swift */,
+				A88331151D9BE900005E9D3C /* AuthenticationProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		A8EF3A601D9B58FF0096074E = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +107,9 @@
 		A8EF3A841D9B59100096074E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A88331101D9BE6A7005E9D3C /* Protocols */,
 				A8EF3A851D9B59310096074E /* QueueManager.swift */,
+				A88331131D9BE721005E9D3C /* Package.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -210,7 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A88331141D9BE721005E9D3C /* Package.swift in Sources */,
+				A88331161D9BE900005E9D3C /* AuthenticationProtocol.swift in Sources */,
 				A8EF3A861D9B59310096074E /* QueueManager.swift in Sources */,
+				A88331121D9BE6DA005E9D3C /* NetworkHandlerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +438,7 @@
 				A8EF3A801D9B58FF0096074E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A8EF3A811D9B58FF0096074E /* Build configuration list for PBXNativeTarget "IGZQueueManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +447,7 @@
 				A8EF3A831D9B58FF0096074E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

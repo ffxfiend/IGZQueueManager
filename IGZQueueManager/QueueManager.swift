@@ -11,6 +11,8 @@ import Foundation
 // MARK: - Types  -
 public typealias IGZNetworkSuccess = ((Any?) -> Void)?
 public typealias IGZNetworkFailure = ((NSError?) -> Void)?
+public typealias PackageParams = [String: Any]
+public typealias PackageHeaders = [String: String]
 public typealias IGZQueueName = String
 
 // MARK: - Errors -
@@ -52,6 +54,12 @@ public class QueueManager {
 	/// Dict of queues that are available. Defaults with a general queue available
 	fileprivate var queues : [String: DispatchQueue] = [String: DispatchQueue]()
 	
+	/// The handler responsible for making the network call
+	fileprivate var networkHandler : IGZNetworkHandlerProtocol?
+	
+	/// The handler responsible for making any authentication adjustments to the package
+	fileprivate var authenticationHandler : IGZNAuthenticationProtocol?
+	
 	public init() {
 		
 		// Empty the queue, just in case
@@ -59,6 +67,58 @@ public class QueueManager {
 		
 		// We can ignore the exception when adding the default queue as nothing is in the queue.
 		try! self.addQueue(queue: DispatchQueue(label: "com.igzactly.network.general", attributes: []), name: GENERAL_QUEUE_NAME)
+		
+	}
+	
+}
+
+// MARK: - Authentication extension -
+extension QueueManager {
+	
+	/**
+	Set the authentication handle to use. The handler must adhere to the `IGZNAuthenticationProtocol`.
+	
+	- parameter handler: The authentication handler
+	*/
+	public func setAuthenticationHandler<T: IGZNAuthenticationProtocol>(_ handler: T) {
+		self.authenticationHandler = handler
+	}
+	
+}
+
+// MARK: - Network Handler Extentions -
+extension QueueManager {
+	
+	/**
+	Use this method to set the network handler to use. This handler will allow you to
+	integrate this manager with any network system available. The handler needs to
+	implement the `IGZNetworkHandlerProtocol` so the `IGZNetworkingQueue` can call
+	your handler when making a network call.
+	
+	- parameter handler:	A custom class hooking this network manager up with another manager.
+	*/
+	public func setNetworkHandler<T: IGZNetworkHandlerProtocol>(_ handler: T) {
+		self.networkHandler = handler
+	}
+	
+	
+	/**
+	This private method takes in a package and applies any authentication adjustments, if
+	defined, then calls the network handler to make the actual call.
+	
+	- parameter request: The `Package` object to use for the network call
+	*/
+	fileprivate func send(_ request: Package) {
+		
+		var req = request
+		
+		if authenticationHandler != nil {
+			// Apply any authentication specific needs to the request.
+			authenticationHandler!.applyAuthentication(&req);
+		}
+		
+		// Call the main send function
+		networkHandler!.send(req)
 		
 	}
 	
@@ -150,5 +210,31 @@ extension QueueManager {
 		
 	}
 	
+	/**
+	This method takes a queue name and `IGZRequest` object and inserts it into the appropriate queue to
+	be called in order.
+	
+	- parameters:
+	- queue:	The name of the queue to add the request to
+	- IGZRequest:	The `Request` object to add to the queue
+	*/
+	fileprivate func queueRequest(_ queue: IGZQueueName, request: Package) throws {
+		
+		guard networkHandler != nil else {
+			throw IGZ_NetworkErrors.requestHandlerNotSet
+		}
+		
+		do {
+			let networkQueue = try getQueue(queue)
+			networkQueue.async(execute: {
+				self.send(request)
+			})
+		} catch IGZ_NetworkErrors.queueDoesNotExists {
+			throw IGZ_NetworkErrors.queueDoesNotExists
+		} catch {
+			throw IGZ_NetworkErrors.requestUnknownError
+		}
+		
+	}
 	
 }
