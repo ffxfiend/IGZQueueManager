@@ -16,9 +16,9 @@ public protocol IGZNetworkHandlerProtocol {
 	and ready to send. If you do not implement this method no network communication
 	will occur via the network manager.
 	
-	- parameter request: The `IGZRequest` object to process via the network handler
+	- parameter request: The `Package` object to process via the network handler
 	*/
-	func send(_ request: Package)
+	func send(_ package: Package)
 	
 }
 

@@ -23,10 +23,10 @@ public enum IGZ_NetworkErrors : Error {
 	case queueDoesNotExists
 	case cannotRemoveDefaultQueue
 	
-	// Request Errors
-	case requestHandlerNotSet
-	case requestUnknownError
-	case requestQueueDoesNotExist
+	// Package Errors
+	case packageHandlerNotSet
+	case packageUnknownError
+	case packageQueueDoesNotExist
 }
 
 // MARK: - Queue Manager Class -
@@ -101,19 +101,74 @@ extension QueueManager {
 		self.networkHandler = handler
 	}
 	
+	/**
+	Use this method to make a network call.
 	
+	- throws:
+		- `IGZ_NetworkErrors.packageHandlerNotSet` if the network handler has not been set
+		- `IGZ_NetworkErrors.queueDoesNotExists` if the requested queue does not exist
+		- `IGZ_NetworkErrors.packageUnknownError` if an unknown error occurs. This should never be thrown...
+	
+	- parameters:
+		- url:		The `NSURL` the package is going to
+		- method:	The type of request to make. Refer to `PackageMethod` for available types
+		- queue:	The name of the queue to add the call into. This must be a `String`
+		- params:	The parameter dictionary to send along with the package
+		- success:	The success callback to make when the call has been successful
+		- failure:	The failure callback to make when the call has failed for any reason
+	*/
+	public func createPackage(_ url: URL, method: PackageMethod, queue: IGZQueueName, params: PackageParams, success: IGZNetworkSuccess, failure: IGZNetworkFailure) throws {
+		
+		do {
+			let package = Package(action: url, method: method, queue: queue, parameters: params, headers: [:], success: success, failure: failure)
+			try queuePackage(package.queue, package: package)
+		} catch IGZ_NetworkErrors.packageHandlerNotSet {
+			throw IGZ_NetworkErrors.packageHandlerNotSet
+		} catch IGZ_NetworkErrors.queueDoesNotExists {
+			throw IGZ_NetworkErrors.queueDoesNotExists
+		} catch {
+			throw IGZ_NetworkErrors.packageQueueDoesNotExist
+		}
+		
+	}
+	
+	/**
+	This method will take a pre generated `Package` object to queue up for the network handler. Usually this is used
+	if a network call has failed and we want to try to resend the same package again.
+	
+	- throws:
+		- `IGZ_NetworkErrors.packageHandlerNotSet` if the network handler has not been set
+		- `IGZ_NetworkErrors.queueDoesNotExists` if the requested queue does not exist
+		- `IGZ_NetworkErrors.packageUnknownError` if an unknown error occurs. This should never be thrown...
+	
+	- parameter package:	The `Package` object to use in the network handler
+	*/
+	public func createPackage(_ package: Package) throws {
+		
+		do {
+			try queuePackage(package.queue, package: package)
+		} catch IGZ_NetworkErrors.packageHandlerNotSet {
+			throw IGZ_NetworkErrors.packageHandlerNotSet
+		} catch IGZ_NetworkErrors.queueDoesNotExists {
+			throw IGZ_NetworkErrors.queueDoesNotExists
+		} catch {
+			throw IGZ_NetworkErrors.packageQueueDoesNotExist
+		}
+		
+	}
+
 	/**
 	This private method takes in a package and applies any authentication adjustments, if
 	defined, then calls the network handler to make the actual call.
 	
-	- parameter request: The `Package` object to use for the network call
+	- parameter package: The `Package` object to use for the network call
 	*/
-	fileprivate func send(_ request: Package) {
+	fileprivate func send(_ package: Package) {
 		
-		var req = request
+		var req = package
 		
 		if authenticationHandler != nil {
-			// Apply any authentication specific needs to the request.
+			// Apply any authentication specific needs to the package.
 			authenticationHandler!.applyAuthentication(&req);
 		}
 		
@@ -153,8 +208,8 @@ extension QueueManager {
 	queue then the default general queue provided.
 	
 	- parameters:
-	- queue: The queue to add. Must be of type dispatch_queue_t
-	- name:  The name you want to give the queue
+		- queue: The queue to add. Must be of type dispatch_queue_t
+		- name:  The name you want to give the queue
 	
 	- throws: `IGZ_NetworkErrors.QueueNameUnavailable` if the queue name already exists
 	*/
@@ -175,8 +230,8 @@ extension QueueManager {
 	- parameter name: The name of the queue to remove
 	
 	- throws:
-	- `IGZ_NetworkErrors.CannotRemoveDefaultQueue` if you are trying to remove the general queue
-	- `IGZ_NetworkErrors.QueueDoesNotExists` if the queue you are trying to remove does not exist
+		- `IGZ_NetworkErrors.CannotRemoveDefaultQueue` if you are trying to remove the general queue
+		- `IGZ_NetworkErrors.QueueDoesNotExists` if the queue you are trying to remove does not exist
 	*/
 	public func removeQueue(_ name: IGZQueueName) throws {
 		
@@ -211,28 +266,34 @@ extension QueueManager {
 	}
 	
 	/**
-	This method takes a queue name and `IGZRequest` object and inserts it into the appropriate queue to
+	This method takes a queue name and `Package` and inserts it into the appropriate queue to
 	be called in order.
 	
+	- throws: 
+		- `IGZ_NetworkErrors.packageHandlerNotSet` if the network handler is not set
+		- `IGZ_NetworkErrors.queueDoesNotExists` if the queue does not eist
+		- `IGZ_NetworkErrors.packageUnknownError` if an unknown error occurs. This should never be thrown...
+	
+	
 	- parameters:
-	- queue:	The name of the queue to add the request to
-	- IGZRequest:	The `Request` object to add to the queue
+		- queue:	The name of the queue to add the package to
+		- package:	The `Package` object to add to the queue
 	*/
-	fileprivate func queueRequest(_ queue: IGZQueueName, request: Package) throws {
+	fileprivate func queuePackage(_ queue: IGZQueueName, package: Package) throws {
 		
 		guard networkHandler != nil else {
-			throw IGZ_NetworkErrors.requestHandlerNotSet
+			throw IGZ_NetworkErrors.packageHandlerNotSet
 		}
 		
 		do {
 			let networkQueue = try getQueue(queue)
 			networkQueue.async(execute: {
-				self.send(request)
+				self.send(package)
 			})
 		} catch IGZ_NetworkErrors.queueDoesNotExists {
 			throw IGZ_NetworkErrors.queueDoesNotExists
 		} catch {
-			throw IGZ_NetworkErrors.requestUnknownError
+			throw IGZ_NetworkErrors.packageUnknownError
 		}
 		
 	}

@@ -25,9 +25,9 @@ extension IGZNAuthenticationProtocol {
 	
 	The actual implementation will depend on the handler used.
 	
-	- parameter request: `IGZRequest` object to apply authentication to
+	- parameter request: `Package` object to apply authentication to
 	*/
-	public func applyAuthentication(_ request: inout Package) {
+	public func applyAuthentication(_ package: inout Package) {
 		// Default implementation does nothing.
 	}
 	
