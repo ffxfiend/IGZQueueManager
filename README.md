@@ -164,9 +164,9 @@ This method can throw the `IGZ_NetworkErrors.QueueDoesNotExists` error if the qu
 **Note: These sample handlers will be included in the `sample` folder soon.**
 
 - AlamofireNetworkHandler
-- This handler will interface with the **Alamofire** networking library version 4.0 and greater. https://github.com/Alamofire/Alamofire
+	- This handler will interface with the **Alamofire** networking library version 4.0 and greater. https://github.com/Alamofire/Alamofire
 - OAuth2AuthenticationHandler
-- This Authentication handler will apply the proper OAuth 2 headers
+	- This Authentication handler will apply the proper OAuth 2 headers
 
 ## Licence
 IGZQueueManager is released under the MIT license. See LICENSE for details.
