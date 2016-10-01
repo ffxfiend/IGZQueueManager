@@ -30,6 +30,7 @@
 		A88331111D9BE6DA005E9D3C /* NetworkHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandlerProtocol.swift; sourceTree = "<group>"; };
 		A88331131D9BE721005E9D3C /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		A88331151D9BE900005E9D3C /* AuthenticationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocol.swift; sourceTree = "<group>"; };
+		A89BC2341DA051E60058D407 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A8EF3A6A1D9B58FF0096074E /* IGZQueueManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IGZQueueManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EF3A6D1D9B58FF0096074E /* IGZQueueManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGZQueueManager.h; sourceTree = "<group>"; };
 		A8EF3A6E1D9B58FF0096074E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		A8EF3A601D9B58FF0096074E = {
 			isa = PBXGroup;
 			children = (
+				A89BC2341DA051E60058D407 /* README.md */,
 				A8EF3A6C1D9B58FF0096074E /* IGZQueueManager */,
 				A8EF3A771D9B58FF0096074E /* IGZQueueManagerTests */,
 				A8EF3A6B1D9B58FF0096074E /* Products */,
