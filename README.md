@@ -57,9 +57,9 @@ import IGZQueueManager
 // Import your network library of choice here
 
 class NetworkHandler : IGZNetworkHandlerProtocol {
-func send(_ package: Package) {
-// Your network code here
-}
+	func send(_ package: Package) {
+	// Your network code here
+	}
 }
 ```
 
@@ -72,9 +72,9 @@ The authentication handler is a custom class that adheres to the `IGZNAuthentica
 import IGZQueueManager
 
 class AuthenticationHandler : IGZNAuthenticationProtocol {
-func applyAuthentication(_ package: inout Package) {
-// Your authentication code here
-}
+	func applyAuthentication(_ package: inout Package) {
+	// Your authentication code here
+	}
 }
 ```
 
@@ -90,9 +90,9 @@ This is the preferred method to queue up a request. You pass it the URL, method,
 
 ```swift
 try! manager.createPackage(url, method: .get, queue: "Custom Queue", params: [:], success: { (response: Any?) in
-// Handle the success case
+	// Handle the success case
 }) { (error: NSError?) in
-// Handle the failure case
+	// Handle the failure case
 }
 ```
 
@@ -101,9 +101,9 @@ This method can be used if you either already have a package object that you nee
 
 ```swift
 let package = Package(action: url, method: .get, queue: "Custom Queue", parameters: [:], headers: [:], success: { (response: Any?) in
-// Handle success here
+	// Handle success here
 }, failure: { (error: NSError?) in
-// Handle failure here
+	// Handle failure here
 })
 try! manager.createPackage(package)
 ```
