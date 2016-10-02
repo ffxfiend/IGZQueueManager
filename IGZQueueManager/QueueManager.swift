@@ -27,8 +27,8 @@
 import Foundation
 
 // MARK: - Types  -
-public typealias IGZNetworkSuccess = ((Any?) -> Void)?
-public typealias IGZNetworkFailure = ((NSError?) -> Void)?
+public typealias IGZNetworkSuccess = ((Any?) -> Void)
+public typealias IGZNetworkFailure = ((NSError?) -> Void)
 public typealias PackageParams = [String: Any]
 public typealias PackageHeaders = [String: String]
 public typealias IGZQueueName = String
@@ -135,7 +135,7 @@ extension QueueManager {
 		- success:	The success callback to make when the call has been successful
 		- failure:	The failure callback to make when the call has failed for any reason
 	*/
-	public func createPackage(_ url: URL, method: PackageMethod, queue: IGZQueueName, params: PackageParams, success: IGZNetworkSuccess, failure: IGZNetworkFailure) throws {
+	public func createPackage(_ url: URL, method: PackageMethod, queue: IGZQueueName, params: PackageParams, success: @escaping IGZNetworkSuccess, failure: @escaping IGZNetworkFailure) throws {
 		
 		do {
 			let package = Package(action: url, method: method, queue: queue, parameters: params, headers: [:], success: success, failure: failure)
