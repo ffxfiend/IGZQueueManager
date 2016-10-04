@@ -124,15 +124,15 @@ extension QueueManager {
 	- parameters:
 		- url:		The `NSURL` the package is going to
 		- method:	The type of request to make. Refer to `PackageMethod` for available types
-		- queue:	The name of the queue to add the call into. This must be a `String`
+		- queue:	The name of the queue to add the call into. This must be a `String` or nil. If nil is passed the general queue will be used
 		- params:	The parameter dictionary to send along with the package
 		- success:	The success callback to make when the call has been successful
 		- failure:	The failure callback to make when the call has failed for any reason
 	*/
-	public func createPackage(_ url: URL, method: PackageMethod, queue: IGZQueueName, params: PackageParams, success: @escaping IGZNetworkSuccess, failure: @escaping IGZNetworkFailure) throws {
+	public func createPackage(_ url: URL, method: PackageMethod, queue: IGZQueueName?, params: PackageParams, success: @escaping IGZNetworkSuccess, failure: @escaping IGZNetworkFailure) throws {
 		
 		do {
-			let package = Package(action: url, method: method, queue: queue, parameters: params, headers: [:], success: success, failure: failure)
+			let package = Package(action: url, method: method, queue: (queue == nil ? GENERAL_QUEUE_NAME : queue!), parameters: params, headers: [:], success: success, failure: failure)
 			try queuePackage(package.queue, package: package)
 		} catch IGZ_NetworkErrors.packageHandlerNotSet {
 			throw IGZ_NetworkErrors.packageHandlerNotSet
