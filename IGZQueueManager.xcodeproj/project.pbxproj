@@ -32,6 +32,7 @@
 		A88331151D9BE900005E9D3C /* AuthenticationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocol.swift; sourceTree = "<group>"; };
 		A89BC2341DA051E60058D407 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A89BC2351DA064A60058D407 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A89BC2381DA3C8B70058D407 /* AlamofireHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireHandler.swift; sourceTree = "<group>"; };
 		A8EF3A6A1D9B58FF0096074E /* IGZQueueManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IGZQueueManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EF3A6D1D9B58FF0096074E /* IGZQueueManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGZQueueManager.h; sourceTree = "<group>"; };
 		A8EF3A6E1D9B58FF0096074E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,6 +70,22 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		A89BC2361DA3C8590058D407 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				A89BC2371DA3C8760058D407 /* Handlers */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		A89BC2371DA3C8760058D407 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				A89BC2381DA3C8B70058D407 /* AlamofireHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
 		A8EF3A601D9B58FF0096074E = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +109,7 @@
 		A8EF3A6C1D9B58FF0096074E /* IGZQueueManager */ = {
 			isa = PBXGroup;
 			children = (
+				A89BC2361DA3C8590058D407 /* Examples */,
 				A8EF3A841D9B59100096074E /* Source */,
 				A8EF3A6D1D9B58FF0096074E /* IGZQueueManager.h */,
 				A8EF3A6E1D9B58FF0096074E /* Info.plist */,
