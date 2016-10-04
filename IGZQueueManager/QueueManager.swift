@@ -79,13 +79,7 @@ public class QueueManager {
 	fileprivate var authenticationHandler : IGZNAuthenticationProtocol?
 	
 	public init() {
-		
-		// Empty the queue, just in case
-		queues.removeAll()
-		
-		// We can ignore the exception when adding the default queue as nothing is in the queue.
-		try! self.addQueue(queue: DispatchQueue(label: "com.igzactly.network.general", attributes: []), name: GENERAL_QUEUE_NAME)
-		
+		self.removeAllQueues()
 	}
 	
 }
@@ -262,6 +256,16 @@ extension QueueManager {
 		}
 		
 		queues.remove(at: index)
+		
+	}
+	
+	public func removeAllQueues() {
+		
+		// Empty the queue, just in case
+		queues.removeAll()
+		
+		// We can ignore the exception when adding the default queue as nothing is in the queue.
+		try! self.addQueue(queue: DispatchQueue(label: "com.igzactly.network.general", attributes: []), name: GENERAL_QUEUE_NAME)
 		
 	}
 	
