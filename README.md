@@ -15,7 +15,7 @@ IGZQueueManager is best installed using the  **Carthage** package manager. For m
 Add the following line to your `Cartfile`
 
 ```ogdl
-github "ffxfiend/IGZQueueManager" ~> 1.0
+github "ffxfiend/IGZQueueManager" ~> 0.1
 ```
 
 ## How to Use
@@ -163,7 +163,7 @@ try! let queue = manager.getQueue("Custom Queue Name")
 This method can throw the `IGZ_NetworkErrors.QueueDoesNotExists` error if the queue you are trying to retrieve does not exist.
 
 ## Sample Handlers
-**Note: These sample handlers will be included in the `sample` folder soon.**
+**Note: These sample handlers will be included in the `Examples/Handlers` folder soon.**
 
 - AlamofireNetworkHandler
 	- This handler will interface with the **Alamofire** networking library version 4.0 and greater. https://github.com/Alamofire/Alamofire
