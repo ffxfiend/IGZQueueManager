@@ -38,7 +38,6 @@
 		A89BC23B1DA3D1320058D407 /* IGZQueueManagerQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGZQueueManagerQueueTests.swift; sourceTree = "<group>"; };
 		A89BC23D1DA457F70058D407 /* IGZQueueManagerPackageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGZQueueManagerPackageTests.swift; sourceTree = "<group>"; };
 		A89BC23F1DA458CA0058D407 /* StubNetworkHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubNetworkHandler.swift; sourceTree = "<group>"; };
-		A89BC2421DA518E10058D407 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		A8EF3A6A1D9B58FF0096074E /* IGZQueueManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IGZQueueManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EF3A6D1D9B58FF0096074E /* IGZQueueManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGZQueueManager.h; sourceTree = "<group>"; };
 		A8EF3A6E1D9B58FF0096074E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,7 +117,6 @@
 				A8EF3A841D9B59100096074E /* Source */,
 				A8EF3A6D1D9B58FF0096074E /* IGZQueueManager.h */,
 				A8EF3A6E1D9B58FF0096074E /* Info.plist */,
-				A89BC2421DA518E10058D407 /* .travis.yml */,
 			);
 			path = IGZQueueManager;
 			sourceTree = "<group>";
