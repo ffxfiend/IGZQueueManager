@@ -1,6 +1,6 @@
 # IGZQueueManager
 
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://travis-ci.org/ffxfiend/IGZQueueManager.svg?branch=master)](https://travis-ci.org/ffxfiend/IGZQueueManager) [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A simple swift framework to filter network calls across multiple queues. It is designed to be used with any existing or homegrown networking library. IGZQueueManager will also allow  you to apply any form of authentication to a network request. It is meant to be simple and came from a set of code I always used when managing network calls to the API's I work with.
 
