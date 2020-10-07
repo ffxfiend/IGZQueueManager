@@ -140,7 +140,7 @@ class IGZQueueManagerPackageTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1) { (error: Error?) in
 			if error != nil {
-				XCTFail("waitForExpectations failed: \(error)")
+				XCTFail("waitForExpectations failed: \(error!)")
 			}
 		}
 		
@@ -161,7 +161,7 @@ class IGZQueueManagerPackageTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1) { (error: Error?) in
 			if error != nil {
-				XCTFail("waitForExpectations failed: \(error)")
+				XCTFail("waitForExpectations failed: \(error!)")
 			}
 		}
 		
